@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio de Evidencias | Ética, Democracia y Constitución</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #3b82f6;
+      --accent: #f59e0b;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: #93c5fd;
+      font-size: 1.1rem;
+    }
+
+    .meta-info {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .meta-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+    }
+
+    container {
+      display: block;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 2rem;
+      border: none;
+      background-color: #e2e8f0;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    }
+
+    .corte-content {
+      display: none;
+    }
+
+    .corte-content.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    .card-badge {
+      background-color: #eff6ff;
+      color: var(--secondary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      width: fit-content;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-reflection {
+      background-color: #f1f5f9;
+      padding: 0.75rem;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #334155;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--secondary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #2563eb;
+    }
+
+    .btn-secondary {
+      background-color: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Portafolio de Evidencias Digitales</h1>
+    <p>Ética, Democracia y Constitución Política</p>
+    <div class="meta-info">
+      <span class="meta-item">👤 Estudiante: Tu Nombre Aquí</span>
+      <span class="meta-item">👨‍🏫 Profesor: Nombre del Docente</span>
+      <span class="meta-item">🎓 Semestre: 2026-1</span>
+    </div>
+  </header>
+
+  <container>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchCorte('corte1')">Primer Corte (4-5 Evidencias)</button>
+      <button class="tab-btn" onclick="switchCorte('corte2')">Segundo Corte (4-5 Evidencias)</button>
+    </div>
+
+    <!-- CORTE 1 -->
+    <div id="corte1" class="corte-content active">
+      <h2 class="section-title">Evidencias del Primer Corte</h2>
+      <div class="grid">
+
+        <!-- Evidencia 1 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Documento PDF</span>
+            <h3 class="card-title">1. Análisis sobre los Derechos Fundamentales</h3>
+            <p class="card-desc">Ensayo crítico sobre la aplicación del artículo 86 (Acción de Tutela) en Colombia y su impacto social.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> Comprendí la importancia del principio de inmediatez y subsidiaridad en la protección de derechos.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-primary" target="_blank">📄 Ver PDF / Trabajo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencia 2 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Enlace / Infografía</span>
+            <h3 class="card-title">2. Estructura del Estado Colombiano</h3>
+            <p class="card-desc">Mapa conceptual e interactivo creado en Canva con la división de poderes (Ejecutivo, Legislativo, Judicial y Org. de Control).</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> Diferenciar las funciones constitucionales de la Procuraduría vs. la Contraloría.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-primary" target="_blank">🔗 Ver Infografía</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencia 3 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Galería de Fotos</span>
+            <h3 class="card-title">3. Taller Grupal: Dilemas Éticos Contemporáneos</h3>
+            <p class="card-desc">Evidencia fotográfica y memorias del debate en clase sobre ética utilitarista vs. deontología de Kant.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> Argumentar desde principios éticos sólidos en lugar de opiniones personales.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-secondary" target="_blank">🖼️ Ver Fotografías</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencia 4 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Documento PDF</span>
+            <h3 class="card-title">4. Línea de Tiempo: Constitucionalismo Colombiano</h3>
+            <p class="card-desc">Evolución de las cartas políticas desde 1863 hasta la transición a la Constitución de 1991.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> El movimiento de la "Séptima Papeleta" como motor del cambio democrático.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-primary" target="_blank">📄 Ver Documento</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CORTE 2 -->
+    <div id="corte2" class="corte-content">
+      <h2 class="section-title">Evidencias del Segundo Corte</h2>
+      <div class="grid">
+
+        <!-- Evidencia 5 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Enlace / Proyecto</span>
+            <h3 class="card-title">1. Mecanismos de Participación Ciudadana</h3>
+            <p class="card-desc">Propuesta de Plebiscito / Referendo ficticio para solucionar una problemática local comunitaria.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> Pasos y umbrales normativos exigidos para activar una iniciativa popular.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-primary" target="_blank">🔗 Ver Proyecto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencia 6 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Documento PDF</span>
+            <h3 class="card-title">2. Informe: Ética en la Función Pública</h3>
+            <p class="card-desc">Estudio de caso sobre corrupción institucional y falta de transparencia en la contratación pública.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> Relevancia del Código de Integridad para los servidores públicos.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-primary" target="_blank">📄 Ver Informe</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencia 7 -->
+        <div class="card">
+          <div class="card-body">
+            <span class="card-badge">Fotos / Registro</span>
+            <h3 class="card-title">3. Salida de Campo / Foro Democrático</h3>
+            <p class="card-desc">Fotografías y síntesis del foro académico sobre la construcción de paz y ciudadanía activa.</p>
+            <div class="card-reflection">
+              <strong>💡 Lo que aprendí:</strong> El papel indispensable de la ciudadanía no solo en las urnas sino en la veeduría.
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-secondary" target="_blank">🖼️ Ver Registro Fotográfico</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </container>
+
+  <footer>
+    <p>© 2026 Portafolio Académico de Evidencias — Ética, Democracia y Constitución Política</p>
+  </footer>
+
+  <script>
+    function switchCorte(corteId) {
+      // Quitar clase activa a todos los contenidos
+      document.querySelectorAll('.corte-content').forEach(el => el.classList.remove('active'));
+      // Quitar clase activa a todos los botones
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      // Activar el seleccionado
+      document.getElementById(corteId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
